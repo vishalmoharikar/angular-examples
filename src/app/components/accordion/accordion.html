@@ -1,0 +1,42 @@
+<div class="accordion" id="myAccordion">
+
+    <!-- @for(item of items(); track $index){  //items is not a signal, so we do not need to call it as a function to get the current value  -->
+
+    @for(item of items(); track $index){     
+        <!-- items is a signal, so we need to call it as a function to get the current value            -->
+  
+      <div class="accordion-item">
+  
+        <h2 class="accordion-header">
+  
+          <button
+            class="accordion-button"
+            [class.collapsed]="!item.expanded"
+            type="button"
+            data-bs-toggle="collapse"
+            [attr.data-bs-target]="'#collapse'+$index">
+  
+            {{ item.title }}
+  
+          </button>
+  
+        </h2>
+  
+        <div
+          [id]="'collapse'+$index"
+          class="accordion-collapse collapse"
+          [class.show]="item.expanded">
+  
+          <div class="accordion-body">
+  
+            {{ item.content }}
+  
+          </div>
+  
+        </div>
+  
+      </div>
+  
+    }
+  
+  </div>
