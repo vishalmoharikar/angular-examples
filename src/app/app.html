@@ -1,10 +1,15 @@
 <div class="d-flex">
   <!-- Sidebar -->
   <div class="nav flex-column nav-pills me-3 sidebar">
-    
-    
-    <a class="nav-link active" href="#accordion-home">
-      Home
+
+
+
+    <a #rla="routerLinkActive" class="nav-link active" routerLinkActive="active" routerLink="/accordion-home">
+      Accordion
+    </a>
+
+    <a #rga="routerLinkActive" class="nav-link" routerLinkActive="active" routerLink="/grid-home">
+      Grid
     </a>
 
 
@@ -12,10 +17,6 @@
 
   <!-- Main Content -->
   <div class="content p-3">
-    <h4>Dashboard</h4>
     <router-outlet />
   </div>
 </div>
-
-
-

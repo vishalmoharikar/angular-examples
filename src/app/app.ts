@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AccordionHome } from './pages/accordion-home/accordion-home';
+import { GridHome } from './pages/grid-home/grid-home';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AccordionHome],
+  imports: [RouterOutlet, RouterOutlet, RouterLink,RouterLinkActive],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
