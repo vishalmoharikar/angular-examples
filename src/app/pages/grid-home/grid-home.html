@@ -1,3 +1,7 @@
-<p>grid-home works!</p>
-
-<vmin-grid [columnList]="gridColumnList" [tableData]="gridData"></vmin-grid>
+<vmin-grid [gridOptions]="gridOptions">
+    <ng-template let-row>
+        <button class="btn btn-sm btn-primary" (click)="onGridButtonClick(row   )">
+            Edit
+        </button>
+    </ng-template>
+</vmin-grid>

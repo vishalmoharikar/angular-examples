@@ -1,21 +1,62 @@
 <table class="table  table-bordered table-sm">
     <thead>
         <tr>
-            <th scope="col">Serial</th>
+            <th scope="col">#</th>
+            @if (gridOptions().showButtonColumn) {
+            <th></th>
+            }
+            @for (column of gridOptions().columns | keyvalue; track $index) {
+            <th scope="col" (click)="sortGrid(column.key)" style="cursor: pointer;">
 
-            @for (column of columnList(); track $index) {
-            <th scope="col">{{ column }}</th>
+                @if (sortColumn === column.key) {
+                <i class="ms-1" [class.bi-sort-up]="sortDirection === 'asc'"
+                    [class.bi-sort-down]="sortDirection === 'desc'">
+                </i>
+                }
+                {{ column.value.displayName }}
+                <i class="bi bi-funnel ms-2" (click)="filterGrid($event, column.key)">
+                </i>
+            </th>
             }
         </tr>
     </thead>
+
     <tbody>
-        @for(row of tableData(); track $index){
+        @for(row of gridOptions().gridData; track $index){
         <tr>
             <th scope="row">{{ $index + 1 }}</th>
-            @for(column of columnList(); track $index){
-            <td>{{ row[column] }}</td>
+
+            @if (gridOptions().showButtonColumn) {
+            @if(row.isEditable){
+            <td>
+                <ng-container *ngTemplateOutlet="
+                            actionTemplate || null;
+                            context: { $implicit: row }
+                            ">
+                </ng-container>
+            </td>
+            }@else {
+            <td></td>
             }
+            }
+
+
+
+            @for(column of gridOptions().columns | keyvalue; track $index){
+            <td>
+                @if(column.value.type === colType.gender){
+                {{ row[column.key] | genderpipe }}
+                }@else if (column.value.type === colType.boolean) {
+                {{ row[column.key] | booleanpipe }}
+                }@else{
+                {{ row[column.key] }}
+                }
+            </td>
+            }
+
         </tr>
         }
     </tbody>
+
+
 </table>
