@@ -29,8 +29,18 @@
   
           <div class="accordion-body">
   
-            {{ item.content }}
-  
+            @if(item.template){
+
+                <ng-container
+                  [ngTemplateOutlet]="item.template">
+                </ng-container>
+    
+              } @else {
+    
+                {{ item.content }}
+    
+              }
+      
           </div>
   
         </div>

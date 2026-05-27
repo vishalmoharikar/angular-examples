@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, TemplateRef, viewChild } from '@angular/core';
 import { Accordion } from '../../components/accordion/accordion';
 import { AccordionItem } from '../../components/models/accordion-item.model';
 
@@ -8,24 +8,34 @@ import { AccordionItem } from '../../components/models/accordion-item.model';
   templateUrl: './accordion-home.html',
   styleUrl: './accordion-home.css',
 })
-export class AccordionHome {
-  accordionData: AccordionItem[] = [
+export class AccordionHome implements OnInit {
+  angularTemplate = viewChild<TemplateRef<unknown>>('template1');
 
-    {
-      title: 'Angular',
-      content: 'Angular is a frontend framework.',
-      expanded: true
-    },
+  bootstrapTemplate = viewChild<TemplateRef<unknown>>('template2');
 
-    {
-      title: 'Bootstrap',
-      content: 'Bootstrap provides UI components.'
-    },
+  accordionData: AccordionItem[] = [];
 
-    {
-      title: 'Signals',
-      content: 'Signals power Angular reactivity.'
-    }
+  ngOnInit() {
 
-  ];
+    this.accordionData = [
+
+      {
+        title: 'Angular',
+        template: this.angularTemplate(),
+        expanded: true
+      },
+
+      {
+        title: 'Bootstrap',
+        template: this.bootstrapTemplate()
+      },
+
+      {
+        title: 'Simple Text',
+        content: 'Normal string content'
+      }
+
+    ];
+
+  }
 }

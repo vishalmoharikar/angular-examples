@@ -1,5 +1,15 @@
-export interface AccordionItem {
+import { TemplateRef } from "@angular/core";
+
+ 
+
+  export interface AccordionItem {
+
     title: string;
-    content: string;
+  
+    content?: string;
+  
+    template?: TemplateRef<unknown>;
+  
     expanded?: boolean;
+  
   }

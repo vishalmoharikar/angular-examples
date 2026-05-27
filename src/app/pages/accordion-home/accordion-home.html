@@ -1,4 +1,24 @@
-<p>accordion-home works!</p>
+<h2>Accordion Demo</h2>
 
- 
-<app-accordion [items]="accordionData"></app-accordion>
+<ng-template #template1>
+
+    <h5>Random Header</h5>
+
+    <ul>
+        <li>List Item 1</li>
+        <li>List Item 2</li>
+        <li>List Item 3</li>
+    </ul>
+
+</ng-template>
+
+<ng-template #template2>
+
+    <div class="alert alert-success">
+        Random Text
+    </div>
+
+</ng-template>
+
+<app-accordion [items]="accordionData">
+</app-accordion>
